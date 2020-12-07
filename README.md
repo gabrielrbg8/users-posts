@@ -9,7 +9,7 @@ Basicamente, o usuário poderá criar uma conta(registrar-se) e criar posts que 
 ** Arquivos(opicional) **
 ```
 
-Nesta simples aplicação, você poderá ver como utilizar conceitos importantes e poderosos do Laravel, como Laravel Mix, Relacionamentos entre Modelos, Migrations, Upload e Download de Arquivos e outras ferramentas úteis como AJAX, jQuery, SASS e etc.
+Nesta simples aplicação, você poderá ver como utilizar conceitos importantes e poderosos do Laravel, como Laravel Mix, Relacionamentos entre Modelos, Migrations, Upload e Download de Arquivos e outras ferramentas úteis como AJAX, jQuery, Bootstrap, SASS e etc.
 
 Penso em acrescentar mais coisas ao longo do tempo, melhorias de layout, exibição dos conteúdos, ACL(o que é bem simples de ser feito com Laravel), Envio de E-mails, Consumo de serviços externos, e etc. 
 ``` Aceitando sugestões, rs. ```
@@ -36,6 +36,14 @@ No seu terminal, digite:
 * php artisan serve *
 ```
 
+# Mais... #
+- Utilizei a personalização de tema do Bootstrap para alterar algumas cores ao meu gosto. Para modificar, vá até: resources/view/scss/style.css
+- As alterações do CSS de todas as views(menos a home.blade.php) são feitas em: resources/views/layouts/style.css
+    - Estarão marcados por comentários a qual sessão e qual view pertence cada código css no arquivo.
+- Para que os arquivos dos posts fiquem disponível para download, você deve criar umm symlink(link simbólico) da storage para public. Segue o comando:
+```
+* php artisan storage:link
+```
 
 # Erros, sugestões, críticas e elogios #
 gabrielrbg8@outlook.com - Desenvolvedor FullStack PHP.
