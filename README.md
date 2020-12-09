@@ -13,8 +13,7 @@ Basicamente, o usuário poderá criar uma conta(registrar-se) e criar posts que 
 
 Nesta simples aplicação, você poderá ver como utilizar conceitos importantes e poderosos do Laravel, como Laravel Mix, Relacionamentos entre Modelos, Migrations, Upload e Download de Arquivos e outras ferramentas úteis como AJAX, jQuery, Bootstrap, SASS e etc.
 
-Penso em acrescentar mais coisas ao longo do tempo, melhorias de layout, exibição dos conteúdos, ACL(o que é bem simples de ser feito com Laravel), Envio de E-mails, Consumo de serviços externos, e etc. 
-# Aceitando sugestões, rs. 
+Penso em acrescentar mais coisas ao longo do tempo, melhorias de layout, exibição dos conteúdos, ACL(o que é bem simples de ser feito com Laravel), Envio de E-mails, Consumo de serviços externos, e etc. Aceitando sugestões!
 
 # Para rodar o projeto, é bem simples. #
 Ao terminar de clonar o projeto, abra o terminal no diretório raiz e rode os seguintes comandos:
