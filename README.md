@@ -21,6 +21,7 @@ Ao terminar de clonar o projeto, abra o terminal no diretório raiz e rode os se
 * npm install *
 ```
 Ao finalizar esse processo, você deve utilizar um banco de dados MySQL e criar um novo Schema (com o nome que quiser, desde que altere no .env).
+- Lembrar de adicionar a seguinte linha ao arquivo .env: FILESYSTEM_DRIVER=public
 
 # Tudo ok até aqui? #
 Ótimo, agora você irá rodar o seguinte comando no terminal:
@@ -29,7 +30,7 @@ Ao finalizar esse processo, você deve utilizar um banco de dados MySQL e criar 
 ```
 Este comando irá criar todas as tabelas e relacionamentos do banco de dados.
 
-Acho que agora você já pode iniciar o servidor e rodar a aplicação!
+Agora você já pode iniciar o servidor e rodar a aplicação!
 
 No seu terminal, digite: 
 ```
