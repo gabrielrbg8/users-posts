@@ -7,7 +7,7 @@ use App\PostFile;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $post = Post::all();
-        if(!empty($post)){
+        if (!empty($post)) {
             return view('posts.index', [
                 'posts' => $post
             ]);
@@ -76,10 +76,31 @@ class PostController extends Controller
 
     public function downloadArchives(Request $request)
     {
-        $postFiles = PostFile::where('post', '=', $request->get('id'))->get();
-        foreach ($postFiles as $k => $p) {
-           return Storage::download($p->path);
+        try {
+            $zip = new ZipArchive();
+            $zip_file = 'download.zip';
+            $zip->open($zip_file, ZipArchive::CREATE);
+
+            $path = storage_path('app/public/posts/'.$request->get('id'));
+
+            $files = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($path),
+                \RecursiveIteratorIterator::LEAVES_ONLY
+            );
+            foreach ($files as $k => $file) {
+                $filePath = $file->getRealPath();
+                if (file_exists($filePath) && is_file($filePath)){
+                    $relativePath = 'users-posts/' . substr($filePath, strlen($path) + 1);
+                    $zip->addFile($filePath, $relativePath);
+                }
+            }
+
+            $zip->close();
+        } catch (Exception $e) {
+            throw ($e);
         }
+
+        return response()->download($zip_file)->deleteFileAfterSend(true);
 
     }
 

@@ -10,7 +10,7 @@
 <body>
     <a href="{{ route('admin.logout') }}">Logout</a>
     <h1>Painel de Admin</h1>
-
+    <p>Esta página está em construção</p>
     <button class="btn btn-lg btn-orange">OK</button>
     <script src="{{ mix('js/jquery.js') }}"></script>
     <script src="{{ mix('js/bootstrap.js') }}"></script>
