@@ -15,7 +15,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post = Post::all();
+        // Adicionar regra do administrador poder ver todos os posts.
+        $post = Post::where('author', '=', Auth::user()->id)->get();
         if (!empty($post)) {
             return view('posts.index', [
                 'posts' => $post
@@ -56,11 +57,22 @@ class PostController extends Controller
         }
     }
 
-    public function show(Post $post)
+    public function show(Post $post, Request $request)
     {
+        if($request->user()->cannot('view', $post)){
+            abort(403);
+        }
         return view('posts.show', [
             'post' => $post
         ]);
+    }
+
+    public function destroy(Post $post, Request $request){
+        if($request->user()->cannot('delete', $post)){
+            abort(403);
+        }
+
+        echo 'Em construção...';
     }
 
     public function upload($post, $files)
@@ -104,7 +116,7 @@ class PostController extends Controller
 
     }
 
-    public function getTotal()
+    public function getTotal(Request $request)
     {
         $posts = Post::all();
         return response()->json([

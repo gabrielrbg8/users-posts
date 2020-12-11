@@ -24,6 +24,7 @@ Route::prefix('posts')->group(function ( ) {
     Route::get('create', 'PostController@create')->name('posts.create');
     Route::get('/{post}', 'PostController@show')->name('posts.show');
     Route::post('store', 'PostController@store')->name('posts.store');
+    Route::get('destroy/{post}', 'PostController@destroy')->name('posts.destroy');
 });
 
 Route::prefix('admin')->group(  function ( ) {
@@ -32,4 +33,6 @@ Route::prefix('admin')->group(  function ( ) {
     Route::post('auth', 'AuthController@authenticate')->name('admin.authenticate');
     Route::get('logout', 'AuthController@logout')->name('admin.logout');
 });
+
+
 

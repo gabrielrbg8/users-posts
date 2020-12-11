@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'profile_id'
     ];
 
     /**
@@ -39,5 +40,16 @@ class User extends Authenticatable
 
     public function posts(){
         return $this->hasMany(Post::class, 'author');
+    }
+
+    public function archives(){
+        return DB::table('posts_files')
+            ->join('posts', 'posts.id', '=', 'posts_files.post')
+            ->join('users', 'users.id', '=', 'posts.author')
+            ->get();
+    }
+
+    public function profile(){
+        return $this->hasOne(Profile::class, 'id', 'profile_id');
     }
 }
