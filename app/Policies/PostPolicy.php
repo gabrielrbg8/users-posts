@@ -19,7 +19,7 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->profile_id === 1;
+        return $user->isAdmin();
     }
 
     /**
@@ -58,9 +58,12 @@ class PostPolicy
         return $this->mapActions($user->profile->actions, 'post-delete');
     }
 
+    /**
+    * This method has created for actions that maked by system admins.
+    */
     public function mapActions($actions, $requestedAction)
     {
-        foreach ($actions as $k => $action) {
+        foreach ($actions as $action) {
             $actionProfile = Action::find($action->action_id);
             if ($actionProfile->name == $requestedAction) {
                 return true;

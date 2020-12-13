@@ -18,21 +18,5 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('users', 'UsersController')->names('users');
-
-Route::prefix('posts')->group(function ( ) {
-    Route::get('/', 'PostController@index')->name('posts.index');
-    Route::get('create', 'PostController@create')->name('posts.create');
-    Route::get('/{post}', 'PostController@show')->name('posts.show');
-    Route::post('store', 'PostController@store')->name('posts.store');
-    Route::get('destroy/{post}', 'PostController@destroy')->name('posts.destroy');
-});
-
-Route::prefix('admin')->group(  function ( ) {
-    Route::get('dashboard', 'AuthController@dashboard')->name('admin.dashboard');
-    Route::get('login', 'AuthController@showForm')->name('admin.show-form');
-    Route::post('auth', 'AuthController@authenticate')->name('admin.authenticate');
-    Route::get('logout', 'AuthController@logout')->name('admin.logout');
-});
-
-
+Route::resource('posts', 'PostController')->names('posts');
 

@@ -7,16 +7,17 @@ use App\PostFile;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Adicionar regra do administrador poder ver todos os posts.
-        $post = Post::where('author', '=', Auth::user()->id)->get();
+        if($request->user()->can('viewAny', Auth::user())){
+            $post = Post::all();
+        } else{
+            $post = Post::where('author', '=', Auth::user()->id)->get();
+        }
         if (!empty($post)) {
             return view('posts.index', [
                 'posts' => $post

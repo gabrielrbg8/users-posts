@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @if(Auth::user()->isAdmin())
     <div id="pai-container-cards" class="row justify-content-center ">
         <div id="container-cards" class="w-75 d-flex text-center">
             <div class="card d-flex flex-column" style="height:8rem; width: 18rem; margin:2%; border:1px solid #EE12B3">
@@ -41,6 +42,19 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="row justify-content-center">
+        <div style="margin:1%">
+            <a href="{{ route('posts.index') }}" class="w-100 btn btn-secondary" >MEUS POSTS</a>
+        </div>
+        <div style="margin:1%">
+            <a href="{{ route('posts.create') }}" class="w-100 btn btn-primary">NOVO POST</a>
+        </div>
+        <div style="margin:1%">
+            <a href="{{ route('users.show', Auth::user()->id ) }}" class="w-100 btn btn-third" style="color:white">MEU PERFIL</a>
+        </div>
+    </div>
+    @endif
 </div>
 
 
@@ -109,7 +123,8 @@
             width: auto !important;
             flex-direction: column;
         }
-        .card{
+
+        .card {
             margin: 2% 0 0 0 !important;
         }
     }
