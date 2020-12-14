@@ -1,6 +1,6 @@
-# Users Posts - Uma simples aplicação para treinar Laravel Framework
+## Users Posts - Uma simples aplicação para treinar Laravel Framework
 
-### Autenticação utilizada: Padrão do Laravel/Bootstrap #
+#### Autenticação: Padrão do Laravel/Bootstrap.
 
 Esta aplicação tem basicamente duas sessões, Usuários e Posts.
 Basicamente, o usuário poderá criar uma conta(registrar-se) e criar posts que recebem os seguintes parâmetros:
@@ -15,14 +15,14 @@ Nesta simples aplicação, você poderá ver como utilizar conceitos importantes
 
 Penso em acrescentar mais coisas ao longo do tempo, melhorias de layout, exibição dos conteúdos, ACL, Envio de E-mails, Consumo de serviços externos, e etc. Aceitando sugestões!
 
-# Para rodar o projeto, é bem simples. #
+#### Para rodar o projeto, é bem simples.
 Ao terminar de clonar o projeto, abra o terminal no diretório raiz e rode os seguintes comandos:
 ```
 * composer install *
 * npm install *
 ```
 Ao finalizar esse processo, você deve utilizar o seridor de banco de dados MySQL e criar um novo Schema (com o nome que quiser, desde que altere no .env).
-- Lembrar de adicionar a seguinte linha ao arquivo .env: FILESYSTEM_DRIVER=public
+*- Lembrar de adicionar a seguinte linha ao arquivo .env: FILESYSTEM_DRIVER=public*
 
 # Tudo ok até aqui? #
 Ótimo, agora você irá rodar o seguinte comando no terminal:
