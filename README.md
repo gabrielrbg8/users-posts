@@ -50,12 +50,12 @@ No seu terminal, digite:
 * As tabelas: profile, actions e profile_actions ainda não tem views para manipular seus dados, até então, você deverá fazer manualmente *
 * O perfil Administrador está configurado como ID = 1 (importante) *
 
-- Na tabela "users" tem uma coluna "profile_id", que faz referência a tablea "profiles".
-- A tabela "profiles" armazena o nome e o id dos perfis(Ex: Administrador(sempre criar com o ID = 1), Usuário Comum, etc...).
-- A tabela "actions" armazena as actions personalizadas que podem ser criadas pelo usuário, exemplo: enviar um e-mail. (As actions padrões do Laravel não precisam ser criadas, ex: create, update, delte, show...).
-- A tabela "profile_actions" associa o perfil com as ações que ele pode realizar no sistema(Exemplo: Administrador pode deletar usuário). Ela recebe o ID do perfil e o ID da ação.
-- Ao criar um usuário, você deve setar manualmente(no banco de dados) o perfil dele(isso será automático no futuro).
+- Na tabela *"users"* tem uma coluna *"profile_id"*, que faz referência a tablea *"profiles"*.
+- A tabela *"profiles"* armazena o nome e o id dos perfis(Ex: Administrador(sempre criar com o ID = 1), Usuário Comum, etc...).
+- A tabela *"actions"* armazena as actions personalizadas que podem ser criadas pelo usuário, exemplo: enviar um e-mail. (As actions padrões do Laravel não precisam ser criadas, ex: create, update, delte, show...).
+- A tabela *"profile_actions"* associa o perfil com as ações que ele pode realizar no sistema(Exemplo: Administrador pode deletar usuário). Ela recebe o ID do perfil e o ID da ação.
+- *Ao criar um usuário, você deve setar manualmente(no banco de dados) o perfil dele(isso será automático no futuro).*
 
 
 ### Erros, sugestões, críticas e elogios ###
-gabrielrbg8@outlook.com - Desenvolvedor FullStack PHP.
+gabrielrbg8@outlook.com - Gabriel, Desenvolvedor FullStack PHP.
