@@ -30,18 +30,19 @@
             </div>
 
             <div class="card d-flex flex-column" style="height:8rem; width: 18rem; margin:2%; border:1px solid #F4E606">
-                <div id="loaderFiles" class="container">
+                <div id="loaderProfiles" class="container">
                     <div class="d-flex justify-content-center text-center">
                         <div style="border-bottom-color:#F4E606; border-top-color:#F4E606;border-left-color:#F4E606;" class="loader4"></div>
                     </div>
                 </div>
-                <p id="countFiles" style="font-size:50px; color:#F4E606; font-weight:bold"></p>
+                <p id="countProfiles" style="font-size:50px; color:#F4E606; font-weight:bold"></p>
                 <div class="w-100 align-self-end">
-                    <a href="#" class="w-100 btn btn-third" style="color:white; border-radius: 1px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">ARQUIVOS</a>
+                    <a href="{{ route('profiles.index') }}" class="w-100 btn btn-third" style="color:white; border-radius: 1px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">PERFIS</a>
                 </div>
             </div>
         </div>
     </div>
+
     @else
     <div class="row justify-content-center">
         <div style="margin:1%">
@@ -70,9 +71,9 @@
             $('#countPosts').html(res.total);
         });
 
-        $.get("{{ route('files.total') }}", function(res) {
-            $('#loaderFiles').addClass('d-none');
-            $('#countFiles').html(res.total);
+        $.get("{{ route('profiles.total') }}", function(res) {
+            $('#loaderProfiles').addClass('d-none');
+            $('#countProfiles').html(res.total);
         });
     });
 </script>

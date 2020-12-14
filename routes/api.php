@@ -31,3 +31,7 @@ Route::prefix('files')->group( function ( ) {
     Route::get('/', 'PostFileController@getTotal')->name('files.total');
 });
 
+Route::prefix('profiles')->group( function ( ) {
+    Route::get('/', 'ProfileController@getTotal')->name('profiles.total');
+});
+

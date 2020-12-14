@@ -18,6 +18,9 @@
 .btn-delete-table{
    padding: 0; margin:0; vertical-align:0;
 }
+.btn-third{
+    color: white;
+}
 
 /*
   ****************  POSTS STYLES ***************
@@ -72,3 +75,11 @@
         height: auto;
     }
 }
+
+/*
+  ****************  PROFILES STYLES ***************
+*/
+.profiles-table-head{
+    color: white;
+}
+
