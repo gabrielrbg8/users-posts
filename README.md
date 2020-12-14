@@ -8,10 +8,10 @@
 Esta aplicação tem basicamente duas sessões, Usuários e Posts.
 
 Basicamente, o usuário poderá criar uma conta(registrar-se) e criar posts que recebem os seguintes parâmetros:
-- *Título - string
-- *Sub-título - string
-- *Conteúdo - string
-- *Arquivos(opicional)- files
+- *Título - string*
+- *Sub-título - string*
+- *Conteúdo - string*
+- *Arquivos(opicional)- files*
 
 Penso em acrescentar mais coisas ao longo do tempo, melhorias de layout, exibição dos conteúdos, ACL, Envio de E-mails, Consumo de serviços externos, e etc. Aceitando sugestões!
 
