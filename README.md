@@ -1,6 +1,6 @@
 # Users Posts - Uma simples aplicação para treinar Laravel Framework
 
-# Autenticação utilizada: Padrão do Laravel/Bootstrap #
+### Autenticação utilizada: Padrão do Laravel/Bootstrap #
 
 Esta aplicação tem basicamente duas sessões, Usuários e Posts.
 Basicamente, o usuário poderá criar uma conta(registrar-se) e criar posts que recebem os seguintes parâmetros:
