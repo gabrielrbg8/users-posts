@@ -6,7 +6,7 @@
 
     <form method="put" action="{{ route('users.store') }}" class="w-25 container form-create-user d-flex flex-column justify-content-center">
         @csrf
-
+        @if(Auth::user()->isAdmin())
         <div class="form-group d-flex flex-column justify-content-center">
             <label for="profile_id">Perfil</label>
             <select class="form-control" name="profile_id" id="">
@@ -25,6 +25,8 @@
                 @endif
             </select>
         </div>
+        @endif
+
         <div class="form-group d-flex flex-column justify-content-center">
             <label for="name">Nome</label>
             <input value="{{ $user->name }}" class="form-control" name="name" type="text" placeholder="Nome">

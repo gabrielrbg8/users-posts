@@ -7,7 +7,9 @@
 <div class="container">
 
     <div>
+        @if(Auth::user()->isAdmin())
         <a class="btn btn-primary" href="{{ route('users.index') }}">Usuários</a>
+        @endif
         <a class="btn btn-secondary" href="{{ route('users.edit', $user->id) }}">Editar</a>
     </div>
 
