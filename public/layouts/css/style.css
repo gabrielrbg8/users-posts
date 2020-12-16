@@ -1,4 +1,4 @@
-/* GENERAL APP STYLES */
+/* APP STYLES */
 .navbar-light .navbar-brand {
     color:white;
 }
@@ -40,12 +40,6 @@
     color: white;
 }
 
-.form-create-user{
-    height: 35px;
-}
-.form-create-user button{
-    height: 50px;
-}
 .form-create-user div, button{
     margin: 1%;
 }
@@ -75,11 +69,3 @@
         height: auto;
     }
 }
-
-/*
-  ****************  PROFILES STYLES ***************
-*/
-.profiles-table-head{
-    color: white;
-}
-

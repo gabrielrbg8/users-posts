@@ -25,13 +25,6 @@ mix
     .scripts([
         'resources/js/script.js'
     ], 'public/js/script.js')
-    .styles([
-        'resources/views/site/css/style.css'
-    ], 'public/site/css/style.css')
-
-    .styles([
-        'resources/views/admin/css/style.css'
-    ], 'public/admin/css/style.css')
 
     .styles([
         'resources/views/layouts/style.css'
