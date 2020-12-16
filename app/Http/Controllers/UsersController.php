@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,11 @@ class UsersController extends Controller
         if($request->user()->cannot('create', Auth::user())){
             abort(403);
         }
-        return view('users.create');
+        $profiles = Profile::all();
+
+        return view('users.create', [
+            'profiles' => $profiles
+        ]);
     }
 
     /**
@@ -79,6 +84,11 @@ class UsersController extends Controller
         if($request->user()->cannot('update', Auth::user())){
             abort(403);
         }
+        $profiles = Profile::all();
+        return view('users.edit', [
+            'user' => $user,
+            'profiles' => $profiles
+        ]);
     }
 
     /**

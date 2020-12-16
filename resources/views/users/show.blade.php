@@ -7,7 +7,8 @@
 <div class="container">
 
     <div>
-        <a href="{{ route('users.index') }}">Home</a>
+        <a class="btn btn-primary" href="{{ route('users.index') }}">Usuários</a>
+        <a class="btn btn-secondary" href="{{ route('users.edit', $user->id) }}">Editar</a>
     </div>
 
     <table class="table text-center">
@@ -42,6 +43,4 @@
         </tbody>
     </table>
 </div>
-
-
 @endsection

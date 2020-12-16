@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Novo perfil')
+@section('title', 'Editar Perfil')
 
 @section('content')
 <div class="w-50 container d-flex justify-content-center flex-column">
@@ -10,13 +10,21 @@
         @csrf
         <div class="form-group d-flex flex-column justify-content-center">
             <label for="title">Nome</label>
-            <input class="form-control" type="text" name="name">
+            <input id="inputName" class="form-control" type="text" name="name" value="{{ $profile->name }}">
         </div>
 
         <label for="actions[]">Ações permitidas para este perfil</label>
-        <select class="js-example-basic-multiple form-control d-flex" name="actions[]" multiple="multiple">
+        <select id="selectActions" class="js-example-basic-multiple form-control d-flex" name="actions[]" multiple="multiple">
             @foreach($actions as $action)
-            <option value="{{ $action->id }}">{{ $action->description }}</option>
+                @if(!empty($profileActions))
+                    @foreach($profileActions as $profileAction)
+                        @if($action->id == $profileAction->action_id)
+                         <option selected value="{{ $action->id }}">{{ $action->description }}</option>
+                        @endif
+                    @endforeach
+                @else
+                <option value="{{ $action->id }}">{{ $action->description }}</option>
+                @endif
             @endforeach
         </select>
 
@@ -34,20 +42,30 @@
 
         $('.js-example-basic-multiple').select2();
         $('form[name="formPost"]').submit(function(e) {
+            var name = $('#inputName').val()
+            var actions = $('#selectActions').val()
+
+            var data = {
+                "name" : name,
+                "actions" : actions,
+            }
+            console.log(actions);
             e.preventDefault();
             $.ajax({
-                url: "{{ route('profiles.store') }}",
-                type: "post",
-                data: new FormData(this), // important
-                processData: false, // important
-                contentType: false, // important
+                url: "{{ route('profiles.update', $profile->id) }}",
+                type: "put",
+                data: data,
                 dataType: "json",
+                headers:{
+                    'X-CSRF-TOKEN' :  "{{ csrf_token() }}",
+                },
                 success: function(res) {
                     if (res.status_code == 200) {
                         var url_string = window.location.href;
                         var url = new URL(url_string);
                         window.location = url.origin + '/profiles'
                     } else {
+                        console.log(res.profile);
                         $('.alertBox').removeClass('d-none alert-success').addClass('alert-danger').html(res.message)
                     }
                 }

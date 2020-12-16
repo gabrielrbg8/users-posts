@@ -7,6 +7,7 @@
 <div class="container">
     <div>
         <a class="btn btn-primary" href="{{ route('actions.create') }}">Nova ação</a>
+        <a class="btn btn-third" href="{{ route('profiles.index') }}">Perfis</a>
     </div>
     <table class="table text-center">
         <thead class="bg-primary">

@@ -7,6 +7,7 @@
 
     <div>
         <a class="btn btn-third" href="{{ route('profiles.index') }}">Perfis</a>
+        <a class="btn btn-secondary" href="{{ route('profiles.edit', $profile->id) }}">Editar perfil</a>
     </div>
 
     <table class="table text-center">
@@ -88,7 +89,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Adicionar nova permissão</button>
+                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-primary">Adicionar nova permissão</a>
             </div>
         </div>
     </div>

@@ -104,7 +104,13 @@ class ProfileController extends Controller
      */
     public function edit(Profile $profile)
     {
-        //
+        $profileActions = ProfileAction::where('profile_id', '=', $profile->id)->get();
+        $actions = Action::all();
+        return view('profiles.edit', [
+            'profile' => $profile,
+            'profileActions' => $profileActions,
+            'actions' => $actions
+        ]);
     }
 
     /**
@@ -116,7 +122,46 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
+        try {
+            Profile::where('id', $profile->id)->update($request->except('actions'));
+
+            if ($request->get('actions') == null) {
+                $profileActions = ProfileAction::where('profile_id', $profile->id)->get();
+                foreach ($profileActions as $profileAction) {
+                    $profileAction->delete();
+                }
+            } else {
+                $profileActions = ProfileAction::where('profile_id', '=', $profile->id)->get();
+
+                if ($profileActions->count() == 0) {
+                    foreach ($request->get('actions') as $action) {
+                        $newProfileAction = new ProfileAction();
+                        $newProfileAction->profile_id = $profile->id;
+                        $newProfileAction->action_id = $action;
+                        $newProfileAction->save();
+                    }
+                } else {
+                    foreach ($request->get('actions') as $action) {
+                        foreach ($profileActions as $profileAction) {
+                            if ($profileAction->action_id != $action) {
+                                $newProfileAction = new ProfileAction();
+                                $newProfileAction->profile_id = $profile->id;
+                                $newProfileAction->action_id = $action;
+                                $newProfileAction->save();
+                            }
+                        }
+                    }
+                }
+            }
+            return response()->json([
+                'status_code' => 200,
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status_code' => 400,
+                'message' => $e->message,
+            ]);
+        }
     }
 
     /**
@@ -127,7 +172,7 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
-        //
+        echo 'Em construção...';
     }
 
     public function getTotal()
