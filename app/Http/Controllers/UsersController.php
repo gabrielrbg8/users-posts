@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UserWelcome as JobsUserWelcome;
+use App\Mail\UserWelcome;
 use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -16,9 +19,10 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->user()->cannot('viewAny', Auth::user())){
+        if ($request->user()->cannot('viewAny', Auth::user())) {
             abort(403);
         }
+
         $users = User::all();
         return view('users.index', [
             'users' => $users
@@ -32,7 +36,7 @@ class UsersController extends Controller
      */
     public function create(Request $request)
     {
-        if($request->user()->cannot('create', Auth::user())){
+        if ($request->user()->cannot('create', Auth::user())) {
             abort(403);
         }
         $profiles = Profile::all();
@@ -50,9 +54,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        if($user = User::create($request->all())){
+        if ($user = User::create($request->all())) {
+            JobsUserWelcome::dispatch($user, $request->get('password'))->delay(now()->addSeconds('5'));
             return redirect()->route('users.show', $user);
-        } else{
+        } else {
             return false;
         }
     }
@@ -65,7 +70,7 @@ class UsersController extends Controller
      */
     public function show(User $user, Request $request)
     {
-        if($request->user()->cannot('view', $user)){
+        if ($request->user()->cannot('view', $user)) {
             abort(403);
         }
         return view('users.show', [
@@ -81,7 +86,7 @@ class UsersController extends Controller
      */
     public function edit(User $user, Request $request)
     {
-        if($request->user()->cannot('update', Auth::user())){
+        if ($request->user()->cannot('update', Auth::user())) {
             abort(403);
         }
         $profiles = Profile::all();
@@ -111,13 +116,14 @@ class UsersController extends Controller
      */
     public function destroy(User $user, Request $request)
     {
-        if($request->user()->cannot('delete', $user)){
+        if ($request->user()->cannot('delete', $user)) {
             abort(403);
         }
         echo 'Em construção...';
     }
 
-    public function getTotal(){
+    public function getTotal()
+    {
         $users = User::all();
 
         return response()->json([
